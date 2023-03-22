@@ -1,0 +1,485 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+body {
+    background: #111;
+    font-family:'Segoe UI';
+}
+/*
+Design inspired by:
+
+- La Santa Muerte by Christian Korn - https://dribbble.com/shots/2261887-La-Santa-Muerte
+- Death & Coffee by David Espinosa - https://dribbble.com/shots/2960917-Death-Coffee
+*/
+
+div[role="img"] {
+    --cape: #000;
+    --bone: #ffc;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75vmin;
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+section {
+    position: relative;
+    width: 60vmin;
+    height: 36vmin;
+    border: 0.5vmin solid;
+    border-radius: 4vmin;
+    background: linear-gradient(#c9c9, #c9c0), #fff;
+    overflow: hidden;
+    box-shadow: 0 0 5vmin #c9c, inset 0 0 0 0.25vmin #000;
+}
+
+    section *,
+    section *::before,
+    section *::after {
+        position: absolute;
+        box-sizing: border-box;
+        pointer-events: none;
+    }
+
+@keyframes walkin {
+    0% {
+        translate: -200% 0;
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
+
+@keyframes walkout {
+    0% {
+        translate: 0 0;
+    }
+
+    100% {
+        translate: 250% 0;
+    }
+}
+
+@keyframes shouldersmove {
+    0%, 100% {
+        scale: 1 1;
+    }
+
+    50% {
+        scale: 1 1.025;
+    }
+}
+
+.death {
+    transform-origin: 50% 100%;
+    animation: walkin 3s ease-out forwards, shouldersmove 0.75s 4 ease-out forwards, walkout 3.75s 16s ease-out forwards, shouldersmove 0.75s 5 16s ease-out forwards;
+    width: 45%;
+    height: 75%;
+    bottom: 0;
+    left: 15%;
+    background: linear-gradient(var(--bone) 0 0) 54% 31% / 5% 15%, linear-gradient(var(--bone) 0 0) 61% 31% / 5% 15%, linear-gradient(var(--bone) 0 0) 68% 31% / 5% 15%, conic-gradient(at 50% -30%, #0000 160deg, var(--cape) 0 200deg, #0000 0), linear-gradient(to bottom left, var(--cape) 50%, #0000 0) 10% 0 / 40% 20%, #f000;
+    background-repeat: no-repeat;
+}
+
+@keyframes moveeyes {
+    0%, 28% {
+        width: 15%;
+        height: 7%;
+        transform: rotate(0);
+    }
+
+    30%, 40% {
+        width: 15%;
+        height: 8%;
+        transform: rotate(20deg);
+    }
+
+    42% {
+        width: 15%;
+        height: 7%;
+        transform: rotate(0);
+    }
+
+    46% {
+        width: 30%;
+        height: 7%;
+    }
+
+    48% {
+        transform: rotate(0);
+        width: 30%;
+        height: 9%;
+    }
+}
+
+.eyebrow {
+    animation: moveeyes 20s linear forwards;
+    width: 30%;
+    height: 9%;
+    background: var(--bone);
+    top: 15%;
+    left: 45%;
+}
+
+.death::before {
+    --extra: linear-gradient(#0000 0 0);
+    content: "";
+    width: 40%;
+    height: 25%;
+    border-radius: 2vmin;
+    top: 10%;
+    left: 40%;
+    background: var(--extra), radial-gradient(circle at 35% 65%, #000 1vmin, #0000 1.05vmin), radial-gradient(circle at 70% 65%, #000 1vmin, #0000 1.05vmin), var(--bone);
+    animation-iteration-count: infinite;
+}
+
+@keyframes movescythe {
+    0% {
+        rotate: 0;
+    }
+
+    100% {
+        rotate: -5deg;
+    }
+}
+
+.death::after {
+    transform-origin: 50% 0;
+    animation: movescythe 0.75s 4 ease-in alternate forwards, movescythe 0.75s 16s 5 ease-in alternate forwards;
+    content: "";
+    width: 60%;
+    height: 100%;
+    border-radius: 100% 0 0 0 / 20%;
+    background: linear-gradient(var(--bone) 0 0) 100% 67% / 1.75vmin 0.5vmin no-repeat, linear-gradient(var(--bone) 0 0) 100% 70% / 1.75vmin 0.5vmin no-repeat, linear-gradient(var(--bone) 0 0) 100% 73% / 1.75vmin 0.5vmin no-repeat, linear-gradient(90deg, #0000 96%, indianred 0), linear-gradient(-185deg, gray 10%, darkgray 0 12%, #0000 0);
+    transform-origin: 100% 100%;
+    transform: rotate(-10deg);
+    bottom: -5%;
+    left: -15%;
+    aclip-path: polygon(0 0, 100% 0, 100% 100%, 40% 8.25%, 0 100%);
+}
+
+@keyframes showring {
+    0% {
+        clip-path: polygon(20% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%, 0% 100%);
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 1;
+    }
+
+    12.5% {
+        clip-path: polygon(20% 100%, 0% 100%, 0% 100%, 0% 0%, 0% 0%, 0% 0%);
+    }
+
+    25%, 75% {
+        clip-path: polygon(20% 100%, 0% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 0%);
+    }
+
+    100% {
+        clip-path: polygon(20% 100%, 0% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 0%);
+        opacity: 0;
+    }
+}
+
+.ring {
+    animation: showring 1s 2.5s linear 1 forwards;
+    width: 30%;
+    height: 40%;
+    bottom: 8%;
+    left: 55%;
+    opacity: 0;
+}
+
+    .ring::before {
+        content: "";
+        top: 30%;
+        left: 10%;
+        width: 15%;
+        height: 30%;
+        border-left: 0.5vmin solid;
+        border-right: 0.5vmin solid;
+        background: linear-gradient(to bottom left, #0000 48%, #000 0 52%, #0000 0);
+        transform: rotate(-20deg) skew(-50deg) rotate(-20deg);
+    }
+
+    .ring::after {
+        content: "DING";
+        font-size: 1.75vmin;
+        background: #00f3;
+        padding-left: 2.25vmin;
+        background: linear-gradient(#0000 45%, #000 0 55%, #0000 0) 0 0 / 1.75vmin 1.75vmin no-repeat, linear-gradient(90deg, #0000 45%, #000 0 55%, #0000 0) 0 0 / 1.75vmin 1.75vmin no-repeat, linear-gradient(45deg, #0000 48%, #000 0 52%, #0000 0) 0 0 / 1.75vmin 1.75vmin no-repeat, linear-gradient(-45deg, #0000 48%, #000 0 52%, #0000 0) 0 0 / 1.75vmin 1.75vmin no-repeat;
+        top: 7%;
+        left: 28%;
+    }
+
+@keyframes liftphone {
+    0% {
+        transform: translate(-150%, 150%) rotate(30deg);
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(0,0) rotate(15deg);
+        opacity: 1;
+    }
+}
+
+.phone {
+    animation: liftphone 1s 4.33s forwards, liftphone 1.25s 8.5s reverse ease-in forwards;
+    width: 7%;
+    height: 19%;
+    background: #000;
+    border-radius: 1vmin;
+    top: 60%;
+    left: 55%;
+    transform: rotate(15deg);
+    opacity: 0;
+}
+
+    .phone::after {
+        content: "";
+        width: 1.75vmin;
+        height: 2.3vmin;
+        background: repeating-linear-gradient(var(--bone) 0 0.5vmin, #0000 0 0.8vmin);
+        transform: rotate(5deg);
+        top: 50%;
+        right: -0.5vmin;
+    }
+
+@keyframes pop {
+    0% {
+        scale: 0;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+.bubble {
+    animation: pop 0.5s 5.5s cubic-bezier(0.175, 0.885, 0.32, 1.5) forwards, pop 0.25s 8.5s linear reverse forwards;
+    --b: #25b749;
+    padding: 2.25vmin 2.5vmin 2.25vmin 4vmin;
+    font-size: 2.25vmin;
+    background: var(--b);
+    color: #fff;
+    border-radius: 2vmin;
+    top: 30%;
+    left: 60%;
+    scale: 0;
+}
+
+    .bubble::before {
+        content: "";
+        width: 8%;
+        height: 40%;
+        background: linear-gradient(to bottom right, var(--b) 50%, #0000 0);
+        top: 95%;
+        left: 15%;
+        transform: skew(-20deg)
+    }
+
+    .bubble span {
+        position: relative;
+    }
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotateY(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotateY(360deg);
+    }
+}
+
+.js {
+    animation: pop 0.5s 5.75s cubic-bezier(0.175, 0.885, 0.32, 1.75) forwards, spin 0.8s 5.75s forwards;
+    scale: 0;
+    aspect-ratio: 1;
+    width: 35%;
+    background: yellow;
+    color: #000;
+    border-radius: 50%;
+    font-size: 3vmin;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+}
+
+@keyframes showsightext {
+    0%, 100% {
+        color: #0000;
+    }
+
+    10%, 90% {
+        color: #000;
+    }
+}
+
+.sigh {
+    animation: showsightext 5s 11s linear forwards;
+    font-size: 2vmin;
+    width: 40%;
+    left: 57%;
+    top: 40%;
+    text-align: center;
+    color: #0000;
+}
+
+@keyframes showsigh {
+    0%, 100% {
+        color: #0000;
+    }
+
+    25%, 75% {
+        color: #0008;
+    }
+}
+
+.sigh::before {
+    animation: showsigh 2s 9.25s linear forwards;
+    content: "...sigh...";
+    top: 0;
+    left: 0;
+    transform: translate(-30%, -130%) rotate(-10deg);
+    font-size: 0.8em;
+    color: #0000;
+}
+
+a {
+    position: absolute;
+    bottom: 1.25vmin;
+    left: 1.25vmin;
+    pointer-events: auto;
+    font-size: 1.5vmin;
+}
+
+/*
+    Auther: Abdelrhman Said
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+#hello {
+    font-family: sans-serif;
+    border-right: 2px #111 solid;
+    /*padding-right: 3px;*/
+    animation: cursor 0.5s infinite alternate;
+    -webkit-animation: cursor 0.5s infinite alternate; /* Safari and Chrome */
+}
+
+@keyframes cursor {
+    from {
+        border-right: 2px #111 solid
+    }
+
+    to {
+        border-right: 2px rgba(0,0,0,0) solid
+    }
+}
+
+@-webkit-keyframes cursor /* Safari and Chrome */
+{
+    from {
+        border-right: 2px #111 solid
+    }
+
+    to {
+        border-right: 2px #fff solid
+    }
+}
+
+
+.arriba {
+    position: center;
+    font-size: 50px;
+    color: white;
+    margin-left: 500px;
+}
+.headd {
+    position:sticky;
+    margin-top:600px;
+   margin-left:752px;
+}
+
+.wrapper {
+    display: inline-flex;
+    list-style: none;
+}
+
+    .wrapper .icon {
+        position: relative;
+        background: #ffffff;
+        border-radius: 50%;
+        padding: 15px;
+        margin: 10px;
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .wrapper .tooltip {
+        position: absolute;
+        top: 0;
+        font-size: 14px;
+        background: #ffffff;
+        color: #ffffff;
+        padding: 5px 8px;
+        border-radius: 5px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+        .wrapper .tooltip::before {
+            position: absolute;
+            content: "";
+            height: 8px;
+            width: 8px;
+            background: #ffffff;
+            bottom: -3px;
+            left: 50%;
+            transform: translate(-50%) rotate(45deg);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+    .wrapper .icon:hover .tooltip {
+        top: -45px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .wrapper .icon:hover span,
+    .wrapper .icon:hover .tooltip {
+        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .wrapper .github:hover,
+    .wrapper .github:hover .tooltip,
+    .wrapper .github:hover .tooltip::before {
+        background: #333333;
+        color: #ffffff;
+        background-size:500px;
+    }
+
+    
